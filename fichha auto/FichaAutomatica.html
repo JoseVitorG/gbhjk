@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ficha automatica</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+
+
+
+<body>
+   <h1>ficha automatica</h1>
+
+
+
+
+   <nav class="menu">
+      <div class="expandir">
+         <i class="bi bi-list" id="botao"></i>
+      </div>
+
+
+      <ul>
+         <!-- <li class="itemMenu ativo">
+            <a href="#">
+               <span class="icon"><i class="bi bi-house"></i></span>
+               <span class="txtLink">Home</span>
+            </a>
+         </li>  -->
+
+
+         <li class="itemMenu ativo" id="statusTelaInicial">
+            <a href="#">
+               <span class="icon"><i class="bi bi-pentagon"></i></span>
+               <span class="txtLink">Atribustos</span>
+            </a>
+         </li>
+
+
+         <li class="itemMenu">
+            <a href="#" onclick="equipamentoModal()">
+               <span class="icon"><i class="bi bi-shield-shaded"></i></span>
+               <span class="txtLink">Equipamentos</span>
+            </a>
+         </li>
+
+
+         <li class="itemMenu" onclick="habilidadesModal()">
+            <a href="#">
+               <span class="icon"><i class="bi bi-lungs"></i></span>
+               <span class="txtLink">Habilidade</span>
+            </a>
+         </li>
+
+
+         <li class="itemMenu">
+            <a href="#" onclick="periciaModal()">
+               <span class="icon"><i class="bi bi-person-bounding-box"></i></i></span>
+               <span class="txtLink">Pericias</span>
+            </a>
+         </li>
+
+
+         <li class="itemMenu">
+            <a href="#" onclick="ritualModal()">
+               <span class="icon"><i class="bi bi-journal-text"></i></span>
+               <span class="txtLink">Rituais</span>
+            </a>
+         </li>
+
+
+         <li class="itemMenu">
+            <a href="#" onclick="listaRitualModal()">
+               <span class="icon"><i class="bi bi-book-half"></i></span>
+               <span class="txtLink">lista</span>
+            </a>
+         </li>
+
+
+         <li class="itemMenu">
+            <a href="#" onclick="openModal()">
+               <span class="icon"><i class="bi bi-plus-slash-minus"></i></span>
+               <span class="txtLink">Somas</span>
+            </a>
+         </li>
+
+
+
+
+         <li class="itemMenu">
+            <a href="#" onclick="dadosModal()">
+               <span class="icon"><i class="bi bi-dice-6"></i></span>
+               <span class="txtLink">Dados</span>
+            </a>
+         </li>
+
+
+
+
+         <li class="itemMenu">
+            <a href="#">
+               <span class="icon"><i class="bi bi-gear"></i></span>
+               <span class="txtLink">Configuração</span>
+            </a>
+         </li>
+
+
+
+
+
+
+      </ul>
+   </nav>
+
+
+
+
+   <div class="origem">
+      <label for="">Digite a sua origem</label><br>
+      <input type="text" id="origemTeste" name="origemTeste">
+      <button id="limparOrigem" class="" onclick="document.querySelector('#origemTeste').value = ''"><i
+            class="bi bi-x-lg"></i></button>
+   </div>
+
+
+   <div id="classe">
+      <select id="qualasuacla" onChange="atualizar()">
+         <option value="0" selected>Escolha sua classe</option>
+         <option value="Combatente">Combatente</option>
+         <option value="Especialista">Especialista</opition>
+         <option value="Ocultista">Ocultista</option>
+      </select>
+
+
+   </div>
+
+
+   <div class="gerson">
+      <div id="informacao"></div>
+
+
+      <select id="opcoes" style="display:none" onChange="atualizar(); mudarCor()">
+         <option value="0" selected>Sem Afinidade</option>
+         <option value="conhecimentoAfinidade">Afinidade com Conhecimento</option>
+         <option value="energiaAfinidade">Afinidade com Energia</option>
+         <option value="morteAfinidade">Afinidade com Morte</option>
+         <option value="sangueAfinidade">Afinidade com Sangue</option>
+      </select>
+   </div>
+
+
+
+
+
+
+   <div id="reset">
+      <button id="btn-reiniciar">Reiniciar</button>
+   </div><br><br>
+
+
+
+
+
+
+
+
+   <div id="status">
+      <p id="titulostat">Status</p>
+     
+      <label id="tituloForça">Força</label>
+      <input type="number" name="for" id="for" class="for" min="0" max="7" oninput="voltar0()">
+
+
+
+
+
+
+
+
+      <label id="tituAgi">Agilidade</label>
+      <input type="number" name="agi" id="agi" min="0" max="7" oninput="voltar01()"> <br>
+
+
+
+
+
+
+
+
+      <label id="tituVig">Vigor</label>
+      <input type="number" name="vig" id="vig" min="0" max="7" oninput="voltar02()"> <br>
+
+
+
+
+
+
+
+
+      <label id="tituPre">Presença</label>
+      <input type="number" name="pre" id="pre" min="0" max="7" oninput="voltar03()"><br>
+
+
+
+
+
+
+
+
+      <label id="tituInt">Intelecto</label>
+      <input type="number" name="int" id="int" min="0" max="7" oninput="voltar04()"><br>
+
+
+     
+
+
+
+
+      <label id="tituNex">Nex</label>
+      <select id="nex" name="nex" onchange="nexMuda(); mudarCor(); atualizar()">
+         <option value="0">0%</option>
+         <option value="5">5%</option>
+         <option value="10">10%</option>
+         <option value="15">15%</option>
+         <option value="20">20%</option>
+         <option value="25">25%</option>
+         <option value="30">30%</option>
+         <option value="35">35%</option>
+         <option value="40">40%</option>
+         <option value="45">45%</option>
+         <option value="50">50%</option>
+         <option value="55">55%</option>
+         <option value="60">60%</option>
+         <option value="65">65%</option>
+         <option value="70">70%</option>
+         <option value="75">75%</option>
+         <option value="80">80%</option>
+         <option value="85">85%</option>
+         <option value="90">90%</option>
+         <option value="95">95%</option>
+         <option value="99">99%</option>
+      </select> <br><br>
+
+
+
+
+      <input type="button" name="soma" id="somar" value="SOMAR"><br><br><br>
+   </div>
+
+
+
+   <div id="modal-container-dados" class="modal-container">
+      <div class="modal">
+         <div class="dados">
+            <div>
+               <button id="dadoD4" onclick="quatroLados()">D4</button>
+               <div id="saida4" class="saidaDados"></div>
+            </div>
+
+
+            <div>
+               <button id="dadoD6" onclick="seisLados()">D6</button>
+               <div id="saida6" class="saidaDados"></div>
+            </div>
+
+
+            <div>
+               <button id="dadoD8" onclick="oitoLados()">D8</button>
+               <div id="saida8" class="saidaDados"></div>
+            </div>
+
+
+            <div>
+               <button id="dadoD10" onclick="dezLados()">D10</button>
+               <div id="saida10" class="saidaDados"></div>
+            </div>
+
+
+            <div>
+               <button id="dadoD12" onclick="dozeLados()">D12</button>
+               <div id="saida12" class="saidaDados"></div>
+            </div>
+
+
+            <div>
+               <button id="dadoD20" onclick="vinteLados()">D20</button>
+               <div id="saida20" class="saidaDados"></div>
+            </div>
+
+
+            <div>
+               <button id="dadoD100" onclick="cemLados()">D100</button>
+               <div id="saida100" class="saidaDados"></div>
+            </div>
+         </div>
+
+
+         <button class="fechar" id="fecharDados">X</button>
+      </div>
+   </div>
+
+
+
+
+
+
+   <!-- somas -->
+   <div id="modal-container" class="modal-container">
+      <div class="modal">
+         <p id="somastru">
+            AS SOMAS DERAM
+         </p>
+
+         <p class="somastotals">A soma da vida é:</p>
+         <div id="saidavida" class="somastotal"></div>
+
+         <p class="somastotals">A soma de PE é:</p>
+         <div id="saidape" class="somastotal"></div>
+
+         <p class="somastotals">A soma do PE por tuno é:</p>
+         <div id="saidapeturno" class="somastotal"></div>
+
+
+         <p class="somastotals">A soma da sanidade é:</p>
+         <div id="saidasanidade" class="somastotal"></div>
+
+
+         <p class="somastotals">A soma da defesa é:</p>
+         <div id="saidadefesa" class="somastotal"></div><br>
+
+
+
+         <label class="somastotals">A soma de RD é:</label>
+         <div id="saidaRd" class="somastotal"></div><br>
+
+
+         <label class="somastotal">A soma de RD bloqueando é:</label>
+         <div id="saidaRdBloquiando" class="somastotal"></div>
+         <button class="fechar" id="fechar">X</button>
+      </div>
+   </div>
+
+
+   <div id="modal-container-erro" class="modal-container">
+      <div class="modal">
+         <header>ERRO</header>
+         <button class="fechar" id="fecharErro">X</button>
+      </div>
+   </div>
+
+
+   <div id="modal-container-erro-ritual" class="modal-container">
+      <div class="modal">
+         <header>Você não possue nenhum ritual</header>
+         <button class="fechar" id="fecharErroRitual">X</button>
+      </div>
+   </div>
+
+
+
+
+   <div id="modal-container-habilidades" class="modal-container">
+      <div class="modal">
+         
+         <div class="habilidades" id="reset-check-box">
+            <div id="vidadiv">
+               <p>PODERES/ABILIDADES/MALDIÇÕES DE VIDA</p>
+
+
+               <input type="checkbox" name="sangdf" id="sangdf" value="sangdf" onclick="somarSangueDeFerro()">
+               <label for="sangdf">Sangue de Ferro</label><br>
+
+
+
+
+               <input type="checkbox" name="vita" id="vita" value="vita" onclick="somarVitalidade()">
+               <label for="vita">Vitalidade</label><br>
+
+
+
+
+
+
+               <input type="checkbox" name="ccg" id="ccg" value="ccg" onclick="somarCascaGrossa()">
+               <label for="ccg">Casca Grossa</label>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div id="pediv">
+               <p>PODERES/ABILIDADES/MALDIÇÕES DE PE/PE TURNO</p>
+               <input type="checkbox" name="aprimorado" id="aprimorado" valeu="aprimorado"
+                  onclick="somarPotencialAprimorado()">
+               <label for="aprimorado">Potencial aprimorado</label><br>
+
+
+
+
+               <input type="checkbox" name="encara" id="encara" valeu="encara" onclick="somarEncararAMorte()">
+               <label for="encara">Encarar a Morte</label><br>
+
+
+
+
+
+
+               <input type="checkbox" name="esforso" id="esforso" valeu="esforso" onclick="somarEsforçoEstra()">
+               <label for="esforso">Esforço estra</label>
+            </div>
+
+
+
+
+            <div id="defdiv">
+               <p>PODERES/ABILIDADES/MALDIÇÕES DE DEFESA</p>
+               <input type="checkbox" name="prec" id="prec" value="prec" onclick="somarPrecognicao()">
+               <label for="prec">Precognição</label><br>
+
+
+
+
+               <input type="checkbox" name="reflxd" id="reflxd" value="reflxd" onclick="somarReflexosDefencivos()">
+               <label for="reflxd">Reflexos defencivos</label><br>
+
+
+
+
+               <input type="checkbox" name="maldef" id="maldef" value="maldef" onclick="somarMaldiçãoDeAcessorioDef()">
+               <label for="maldef"> Maldição de acessorio(Defesa)</label><br>
+
+
+
+
+               <input type="checkbox" name="tanqueDeGuerra" id="tanqueDeGuerra" value="tanqueDeGuerra"
+                  onclick="somarTanqueDeGuerra()">
+               <label for="tanqueDeGuerra">Tanque de Guerra</label><br>
+            </div>
+
+
+
+
+
+
+         </div>
+
+
+
+
+
+
+         <button class="fechar" id="fecharHabilidades">X</button>
+      </div>
+   </div>
+
+
+
+
+   <div id="modal-container-ritual" class="modal-container">
+      <div class="modal">
+         <div class="rituais">
+            <header>Rituais</header>
+         </div><br><br>
+
+
+         <div class="ritua">
+            <form>
+               <label for="search-term"></label>
+               <input type="text" id="search-term" name="search-term">
+               <button type="submit" id="procurar"><i class="bi bi-search"></i></button>
+               <button id="salva" onclick="salvar()"><i class="bi bi-plus-circle"></i></button>
+               <button id="limpar" onclick="document.querySelector('#search-term').value = ''"><i
+                     class="bi bi-x-lg"></i></button>
+            </form>
+            <p id="results-list"></p>
+         </div>
+         <div id="listaRituais"></div>
+
+
+
+
+         <button class="fechar" id="fecharRitual">X</button>
+      </div>
+   </div>
+
+
+   <div id="modal-container-lista-ritual" class="modal-container">
+      <div class="modal">
+         <span id="conteudo"></span>
+         <button class="fechar" id="fecharListaRitual">X</button>
+      </div>
+   </div>
+
+
+
+
+   <div id="modal-container-pericia" class="modal-container">
+      <div class="modal">
+         <div>
+            <label id="tituloPer">Pericias</label><br><br>
+
+
+            <label id="tituRef">Reflexo</label>
+            <input type="number" name="ref" id="ref"><br><br>
+
+
+            <label id="tituFor">Fortitude</label>
+            <input type="number" id="fort" name="fort"><br><br>
+         </div>
+         <button class="fechar" id="fecharPericia">X</button>
+      </div>
+   </div>
+
+
+   <div id="modal-container-equipamento" class="modal-container">
+      <div class="modal">
+         <div id="equidiv">
+            <p>PROTEÇÕES</p>
+            <input type="radio" name="armadura" id="pessada" value="pessada" onclick="somarArmadura(1)">
+            <label for="pessada">Armadura pessada</label><br>
+
+
+            <input type="radio" name="armadura" id="leve" value="leve" onclick="somarArmadura(2)">
+            <label for="leve">Armadura leve</label><br>
+         </div>
+         <button class="fechar" id="fecharEquipamento">X</button>
+      </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+   <footer>&copyjosé gostoso</footer>
+   <script src="lista.js"></script>
+   <script src="script.js"></script>
+</body>
+
+
+</html>
+
+
+
